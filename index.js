@@ -10,6 +10,8 @@ const {
   getHotels,
   getSites,
   getFlightByOriginandDestination,
+  getHotelsByLocation,
+  getSitesByLocation
 } = require("./controllers/itineraryController");
 const { sequelize } = require("./models");
 
@@ -27,6 +29,8 @@ app.get("/data/flights", getFlights)
 app.get("/data/hotels", getHotels)
 app.get("/data/sites", getSites)
 app.get("/data/getFlightsByOriginAndDestination",getFlightByOriginandDestination)
+app.get("/hotes/location",getHotelsByLocation)
+app.get("/sites/location", getSitesByLocation)
 
 sequelize.authenticate().then(() => {
     console.log("Database Connected")
@@ -36,3 +40,5 @@ sequelize.authenticate().then(() => {
 app.listen(3000, () => {
     console.log("Server is Running on port 3000")
 })
+
+module.exports = app

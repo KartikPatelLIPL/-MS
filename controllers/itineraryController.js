@@ -76,9 +76,41 @@ const getSites = async (req, res) => {
   }
 };
 
+
+
+const getHotelsByLocation = async (req, res) => {
+
+  try {
+    const { location } = req.query;
+    console.log(location);
+    const response = await axiosInstance.get(
+      `/hotels/search?location=${location}`
+    );
+    res.json(response.data);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch Hotels By Locations" });
+  }
+}
+
+const getSitesByLocation = async (req, res) => {
+  try{
+    const { location } = req.query;
+    console.log(location);
+    const response = await axiosInstance.get(
+      `/hotels/search?location=${location}`
+    );
+    res.json(response.data);
+
+  }catch (error) {
+    res.status(500).json({ error: "Failed to fetch sites By Locations" });
+  }
+};
+
 module.exports = {
   getFlights,
   getHotels,
   getSites,
   getFlightByOriginandDestination,
+  getHotelsByLocation,
+  getSitesByLocation,
 };
